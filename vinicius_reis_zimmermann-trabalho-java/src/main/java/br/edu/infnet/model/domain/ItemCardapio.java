@@ -1,13 +1,16 @@
 package br.edu.infnet.model.domain;
 
-public abstract class ItemCardapio {
+import java.math.BigDecimal;
 
+public abstract class ItemCardapio {
+    private Long id;
     private String nome;
-    private double preco;
-    private boolean disponivel;
+    private BigDecimal preco;
+    private Boolean disponivel;
     private Lanchonete lanchonete;
 
-    public ItemCardapio(String nome, double preco, boolean disponivel) {
+    public ItemCardapio(Long id,String nome, BigDecimal preco, Boolean disponivel) {
+        this.id=id;
         this.nome = nome;
         this.preco = preco;
         this.disponivel = disponivel;
@@ -31,31 +34,31 @@ public abstract class ItemCardapio {
     public String getNome() {
         return nome;
     }
-
     public void setNome(String nome) {
         this.nome = nome;
     }
-
-    public double getPreco() {
+    public BigDecimal getPreco() {
         return preco;
     }
-
-    public void setPreco(double preco) {
+    public void setPreco(BigDecimal preco) {
         this.preco = preco;
     }
-
-    public boolean isDisponivel() {
+    public Boolean isDisponivel() {
         return disponivel;
     }
-
-    public void setDisponivel(boolean disponivel) {
+    public void setDisponivel(Boolean disponivel) {
         this.disponivel = disponivel;
     }
     public Lanchonete getLanchonete() {
         return lanchonete;
     }
-
     public void setLanchonete(Lanchonete lanchonete) {
         this.lanchonete = lanchonete;
+    }
+    public Long getId() {
+        return id;
+    }
+    public void setId(Long id) {
+        this.id = id;
     }
 }
