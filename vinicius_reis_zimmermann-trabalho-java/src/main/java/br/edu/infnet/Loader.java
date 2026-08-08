@@ -1,7 +1,9 @@
 package br.edu.infnet;
 
+import br.edu.infnet.exception.IdentificadorDuplicadoException;
+import br.edu.infnet.exception.RecursoNaoEncontradoException;
 import br.edu.infnet.model.domain.*;
-import br.edu.infnet.model.domain.service.ItemService;
+import br.edu.infnet.service.ItemService;
 import br.edu.infnet.model.domain.util.CNPJ;
 import br.edu.infnet.model.domain.util.CPF;
 import org.springframework.boot.CommandLineRunner;
@@ -9,14 +11,13 @@ import org.springframework.stereotype.Component;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
-import java.util.LinkedHashMap;
 import java.util.List;
-import java.util.Map;
 
 @Component
 public class Loader implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
+
         CNPJ cnpjLanchonete = new CNPJ("06.990.590/0001-23");
         Lanchonete lanchonete = new Lanchonete(1L, "Super Lanches", true, cnpjLanchonete    );
 
@@ -51,7 +52,13 @@ public class Loader implements CommandLineRunner {
         for (Pedido pedido1 : lanchonete.getHistoricoPedidos()) {
             System.out.println(pedido1);
         }
-
+        try {
+            itemService.incluir(lanche);
+        } catch (IdentificadorDuplicadoException e) {
+            System.out.println("[ERROR]" + e.getMessage() + "Nome:" + lanche.getNome());
+        } catch (RecursoNaoEncontradoException | IllegalArgumentException e) {
+            System.out.println("[ERROR]" + e.getMessage());
+        }
          itemService.obterLista().forEach(System.out::println);
          itemService.obterDisponiveis().forEach(System.out::println);
        // dados.keySet();
