@@ -1,6 +1,7 @@
 package br.edu.infnet;
 
 import br.edu.infnet.model.domain.*;
+import br.edu.infnet.model.domain.service.ItemService;
 import br.edu.infnet.model.domain.util.CNPJ;
 import br.edu.infnet.model.domain.util.CPF;
 import org.springframework.boot.CommandLineRunner;
@@ -8,12 +9,14 @@ import org.springframework.stereotype.Component;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
 
 @Component
 public class Loader implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
-
         CNPJ cnpjLanchonete = new CNPJ("06.990.590/0001-23");
         Lanchonete lanchonete = new Lanchonete(1L, "Super Lanches", true, cnpjLanchonete    );
 
@@ -22,7 +25,6 @@ public class Loader implements CommandLineRunner {
 
         lanchonete.adicionarItemcardapio(lanche);
         lanchonete.adicionarItemcardapio(bebida);
-
         CPF cpf = new CPF("142.013.666-69");
         Cliente cliente = new Cliente(1L, "Carlos Silva", cpf);
 
@@ -35,8 +37,12 @@ public class Loader implements CommandLineRunner {
 
         lanchonete.adicionarPedido(pedido);
 
+        List<ItemCardapio> dados = List.of(lanche);
+        dados.forEach(System.out::println);
         System.out.println(" Dados da Lanchonete ");
         System.out.println(lanchonete);
+        ItemService itemService = new ItemService();
+        itemService.incluir(lanche);
 
         for (ItemCardapio item : lanchonete.getCardapio()) {
             System.out.println("- " + item.descreverPreparo());
@@ -45,6 +51,13 @@ public class Loader implements CommandLineRunner {
         for (Pedido pedido1 : lanchonete.getHistoricoPedidos()) {
             System.out.println(pedido1);
         }
+
+         itemService.obterLista().forEach(System.out::println);
+         itemService.obterDisponiveis().forEach(System.out::println);
+       // dados.keySet();
+       // dados.values();
+
+       // dados.values().forEach(System.out::println);
     }
 
 }

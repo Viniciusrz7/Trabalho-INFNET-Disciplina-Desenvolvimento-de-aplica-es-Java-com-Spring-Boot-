@@ -11,6 +11,9 @@ public class Lanche extends ItemCardapio{
         this.ingredientes = ingredientes;
         this.eArtesanal = eArtesanal;
     }
+    public Lanche(){
+
+    }
 
     @Override
     public String descreverPreparo() {
@@ -37,7 +40,7 @@ public class Lanche extends ItemCardapio{
     public Boolean iseArtesanal() {
         return eArtesanal;
     }
-    public void seteArtesanal(Boolean eArtesanal) {
+    public void setArtesanal(Boolean eArtesanal) {
         this.eArtesanal = eArtesanal;
     }
 

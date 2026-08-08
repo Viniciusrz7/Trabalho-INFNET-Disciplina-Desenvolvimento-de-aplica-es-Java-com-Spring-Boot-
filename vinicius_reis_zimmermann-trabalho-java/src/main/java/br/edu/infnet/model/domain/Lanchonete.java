@@ -1,12 +1,13 @@
 package br.edu.infnet.model.domain;
 
 import br.edu.infnet.model.domain.util.CNPJ;
+import br.edu.infnet.model.domain.util.Identificavel;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class Lanchonete {
+public class Lanchonete implements Identificavel {
     private Long id;
     private String nome;
     private Boolean ativa;

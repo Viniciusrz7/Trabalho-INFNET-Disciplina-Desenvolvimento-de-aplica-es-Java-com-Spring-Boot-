@@ -1,11 +1,13 @@
 package br.edu.infnet.model.domain;
 
+import br.edu.infnet.model.domain.util.Identificavel;
+
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class Pedido {
+public class Pedido implements Identificavel {
     private Long id;
     private Integer numeroPedido;
     private LocalDateTime dataHoraEmissao;

@@ -1,8 +1,10 @@
 package br.edu.infnet.model.domain;
 
+import br.edu.infnet.model.domain.util.Identificavel;
+
 import java.math.BigDecimal;
 
-public abstract class ItemCardapio {
+public abstract class ItemCardapio implements Identificavel {
     private Long id;
     private String nome;
     private BigDecimal preco;

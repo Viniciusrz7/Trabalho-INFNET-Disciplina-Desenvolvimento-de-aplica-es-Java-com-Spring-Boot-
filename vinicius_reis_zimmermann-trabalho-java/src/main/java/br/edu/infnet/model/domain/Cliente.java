@@ -1,8 +1,9 @@
 package br.edu.infnet.model.domain;
 
 import br.edu.infnet.model.domain.util.CPF;
+import br.edu.infnet.model.domain.util.Identificavel;
 
-public class Cliente {
+public class Cliente implements Identificavel {
     private Long id;
     private String nome;
     private CPF cpf;
