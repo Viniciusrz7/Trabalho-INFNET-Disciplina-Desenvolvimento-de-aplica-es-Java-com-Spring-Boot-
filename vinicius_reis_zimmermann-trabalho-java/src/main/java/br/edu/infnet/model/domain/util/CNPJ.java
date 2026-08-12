@@ -1,9 +1,13 @@
 package br.edu.infnet.model.domain.util;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonValue;
+
 public final class CNPJ {
 
     private final String valor;
 
+    @JsonCreator
     public CNPJ(String valor) {
         this.valor = limpar(valor);
 
@@ -12,6 +16,7 @@ public final class CNPJ {
         }
     }
 
+    @JsonValue
     public String valor() {
         return valor;
     }

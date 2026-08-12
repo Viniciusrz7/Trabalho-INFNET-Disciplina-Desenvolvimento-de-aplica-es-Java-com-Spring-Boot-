@@ -3,7 +3,10 @@ package br.edu.infnet;
 import br.edu.infnet.exception.IdentificadorDuplicadoException;
 import br.edu.infnet.exception.RecursoNaoEncontradoException;
 import br.edu.infnet.model.domain.*;
-import br.edu.infnet.service.ItemService;
+import br.edu.infnet.service.ClienteService;
+import br.edu.infnet.service.ItemCardapioService;
+import br.edu.infnet.service.LanchoneteService;
+import br.edu.infnet.service.PedidoService;
 import br.edu.infnet.model.domain.util.CNPJ;
 import br.edu.infnet.model.domain.util.CPF;
 import org.springframework.boot.CommandLineRunner;
@@ -15,6 +18,20 @@ import java.util.List;
 
 @Component
 public class Loader implements CommandLineRunner {
+    private final ItemCardapioService itemCardapioService;
+    private final ClienteService clienteService;
+    private final LanchoneteService lanchoneteService;
+    private final PedidoService pedidoService;
+
+    public Loader(ItemCardapioService itemCardapioService,
+                  ClienteService clienteService,
+                  LanchoneteService lanchoneteService,
+                  PedidoService pedidoService) {
+        this.itemCardapioService = itemCardapioService;
+        this.clienteService = clienteService;
+        this.lanchoneteService = lanchoneteService;
+        this.pedidoService = pedidoService;
+    }
     @Override
     public void run(String... args) throws Exception {
 
@@ -42,8 +59,12 @@ public class Loader implements CommandLineRunner {
         dados.forEach(System.out::println);
         System.out.println(" Dados da Lanchonete ");
         System.out.println(lanchonete);
-        ItemService itemService = new ItemService();
-        itemService.incluir(lanche);
+
+        itemCardapioService.incluir(lanche);
+        itemCardapioService.incluir(bebida);
+        clienteService.incluir(cliente);
+        lanchoneteService.incluir(lanchonete);
+        pedidoService.incluir(pedido);
 
         for (ItemCardapio item : lanchonete.getCardapio()) {
             System.out.println("- " + item.descreverPreparo());
@@ -53,14 +74,15 @@ public class Loader implements CommandLineRunner {
             System.out.println(pedido1);
         }
         try {
-            itemService.incluir(lanche);
+            itemCardapioService.incluir(lanche);
         } catch (IdentificadorDuplicadoException e) {
             System.out.println("[ERROR]" + e.getMessage() + "Nome:" + lanche.getNome());
         } catch (RecursoNaoEncontradoException | IllegalArgumentException e) {
             System.out.println("[ERROR]" + e.getMessage());
         }
-         itemService.obterLista().forEach(System.out::println);
-         itemService.obterDisponiveis().forEach(System.out::println);
+         itemCardapioService.obterLista().forEach(System.out::println);
+         itemCardapioService.obterDisponiveis().forEach(System.out::println);
+
        // dados.keySet();
        // dados.values();
 

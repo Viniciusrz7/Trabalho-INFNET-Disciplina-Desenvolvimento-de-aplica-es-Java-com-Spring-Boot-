@@ -2,10 +2,13 @@ package br.edu.infnet.service;
 
 import br.edu.infnet.model.domain.ItemCardapio;
 import br.edu.infnet.service.BaseGenerics.BaseService;
+import org.springframework.stereotype.Service;
+
 import java.util.ArrayList;
 import java.util.List;
 
-public class ItemService extends BaseService<ItemCardapio> {
+@Service
+public class ItemCardapioService extends BaseService<ItemCardapio> {
 
     public List<ItemCardapio> obterDisponiveis(){
         List<ItemCardapio> disponiveis = new ArrayList<>();

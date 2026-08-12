@@ -2,11 +2,13 @@ package br.edu.infnet.model.domain;
 
 import br.edu.infnet.model.domain.util.CPF;
 import br.edu.infnet.model.domain.util.Identificavel;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 public class Cliente implements Identificavel {
     private Long id;
     private String nome;
     private CPF cpf;
+    @JsonIgnore
     private Lanchonete lanchonete;
 
     public Cliente(Long id, String nome, CPF cpf) {

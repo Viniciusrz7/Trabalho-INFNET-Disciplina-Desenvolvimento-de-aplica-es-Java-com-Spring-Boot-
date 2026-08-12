@@ -1,9 +1,13 @@
 package br.edu.infnet.model.domain.util;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonValue;
+
 public final class CPF {
 
     private final String valor;
 
+    @JsonCreator
     public CPF(String valor) {
         this.valor = limpar(valor);
 
@@ -12,6 +16,7 @@ public final class CPF {
         }
     }
 
+    @JsonValue
     public String valor() {
         return valor;
     }
