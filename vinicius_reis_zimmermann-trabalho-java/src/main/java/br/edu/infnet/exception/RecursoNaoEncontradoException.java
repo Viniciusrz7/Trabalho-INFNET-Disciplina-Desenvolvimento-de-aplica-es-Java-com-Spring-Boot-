@@ -1,13 +1,13 @@
-package br.edu.infnet.exception;
+    package br.edu.infnet.exception;
 
-import java.io.Serial;
+    import java.io.Serial;
 
-public class RecursoNaoEncontradoException extends RuntimeException{
+    public class RecursoNaoEncontradoException extends RuntimeException{
 
-    @Serial
-    private static final long serialVersionUID = 1L;
+        @Serial
+        private static final long serialVersionUID = 1L;
 
-    public RecursoNaoEncontradoException(String mensagem){
-        super(mensagem);
+        public RecursoNaoEncontradoException(String mensagem){
+            super(mensagem);
+        }
     }
-}

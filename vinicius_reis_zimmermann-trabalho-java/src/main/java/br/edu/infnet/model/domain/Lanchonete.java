@@ -2,6 +2,7 @@ package br.edu.infnet.model.domain;
 
 import br.edu.infnet.model.domain.util.CNPJ;
 import br.edu.infnet.model.domain.util.Identificavel;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -12,6 +13,7 @@ public class Lanchonete implements Identificavel {
     private String nome;
     private Boolean ativa;
     private CNPJ cnpj;
+    @JsonManagedReference
     private List<ItemCardapio> cardapio = new ArrayList<ItemCardapio>();
     private List<Pedido> historicoPedidos = new ArrayList<Pedido>();
     private List<Cliente> clientesCadastrados = new ArrayList<Cliente>();

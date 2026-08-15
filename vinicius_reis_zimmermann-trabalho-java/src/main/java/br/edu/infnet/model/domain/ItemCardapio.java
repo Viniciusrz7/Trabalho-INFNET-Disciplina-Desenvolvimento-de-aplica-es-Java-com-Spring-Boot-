@@ -1,6 +1,7 @@
 package br.edu.infnet.model.domain;
 
 import br.edu.infnet.model.domain.util.Identificavel;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import java.math.BigDecimal;
@@ -10,7 +11,7 @@ public abstract class ItemCardapio implements Identificavel {
     private String nome;
     private BigDecimal preco;
     private Boolean disponivel;
-    @JsonIgnore
+    @JsonBackReference
     private Lanchonete lanchonete;
 
     public ItemCardapio(Long id,String nome, BigDecimal preco, Boolean disponivel) {
