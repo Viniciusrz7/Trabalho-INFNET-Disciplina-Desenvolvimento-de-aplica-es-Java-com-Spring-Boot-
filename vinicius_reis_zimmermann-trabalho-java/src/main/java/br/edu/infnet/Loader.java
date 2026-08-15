@@ -7,8 +7,6 @@ import br.edu.infnet.service.ClienteService;
 import br.edu.infnet.service.ItemCardapioService;
 import br.edu.infnet.service.LanchoneteService;
 import br.edu.infnet.service.PedidoService;
-import br.edu.infnet.model.domain.util.CNPJ;
-import br.edu.infnet.model.domain.util.CPF;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
@@ -35,16 +33,16 @@ public class Loader implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
 
-        CNPJ cnpjLanchonete = new CNPJ("06.990.590/0001-23");
-        Lanchonete lanchonete = new Lanchonete(1L, "Super Lanches", true, cnpjLanchonete    );
+
+        Lanchonete lanchonete = new Lanchonete(1L, "Super Lanches", true, null    );
 
         Lanche lanche = new Lanche(1L, "X-Tudo Artesanal", new BigDecimal("35.50"), true, "Pão brioche, blend 200g, queijo, bacon, ovo", true);
         Bebida bebida = new Bebida(2L, "Coca-Cola", new BigDecimal("7.00"), true, 350, false);
 
         lanchonete.adicionarItemcardapio(lanche);
         lanchonete.adicionarItemcardapio(bebida);
-        CPF cpf = new CPF("142.013.666-69");
-        Cliente cliente = new Cliente(1L, "Carlos Silva", cpf);
+
+        Cliente cliente = new Cliente(1L, "Carlos Silva", null);
 
         lanchonete.cadastrarCliente(cliente);
 

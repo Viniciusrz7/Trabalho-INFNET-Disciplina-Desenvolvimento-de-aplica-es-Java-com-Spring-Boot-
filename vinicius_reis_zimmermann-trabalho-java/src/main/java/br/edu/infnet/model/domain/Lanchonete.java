@@ -1,8 +1,10 @@
 package br.edu.infnet.model.domain;
 
-import br.edu.infnet.model.domain.util.CNPJ;
+import org.hibernate.validator.constraints.br.CNPJ;
 import br.edu.infnet.model.domain.util.Identificavel;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import jakarta.validation.constraints.NotBlank;
+
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -12,13 +14,15 @@ public class Lanchonete implements Identificavel {
     private Long id;
     private String nome;
     private Boolean ativa;
-    private CNPJ cnpj;
+    @NotBlank(message = "O CNPJ é obrigatório")
+    @CNPJ(message = "CNPJ inválido")
+    private String cnpj;
     @JsonManagedReference
     private List<ItemCardapio> cardapio = new ArrayList<ItemCardapio>();
     private List<Pedido> historicoPedidos = new ArrayList<Pedido>();
     private List<Cliente> clientesCadastrados = new ArrayList<Cliente>();
 
-    public Lanchonete(Long id, String nome, Boolean ativa, CNPJ cnpj) {
+    public Lanchonete(Long id, String nome, Boolean ativa, String cnpj) {
         this.id = id;
         this.nome = nome;
         this.ativa=ativa;
@@ -76,10 +80,10 @@ public class Lanchonete implements Identificavel {
     public void setNome(String nome) {
         this.nome = nome;
     }
-    public CNPJ getCnpj() {
+    public String getCnpj() {
         return cnpj;
     }
-    public void setCnpj(CNPJ cnpj) {
+    public void setCnpj(String cnpj) {
         this.cnpj = cnpj;
     }
     public void setAtiva(Boolean ativa) {

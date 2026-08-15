@@ -1,30 +1,36 @@
 package br.edu.infnet.model.domain;
 
-import br.edu.infnet.model.domain.util.CPF;
 import br.edu.infnet.model.domain.util.Identificavel;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import jakarta.validation.constraints.NotBlank;
+import org.hibernate.validator.constraints.br.CPF;
 
 public class Cliente implements Identificavel {
+
     private Long id;
     private String nome;
-    private CPF cpf;
+
+    @NotBlank(message = "O CPF é obrigatório")
+    @CPF(message = "CPF inválido")
+    private String cpf;
+
     @JsonIgnore
     private Lanchonete lanchonete;
 
-    public Cliente(Long id, String nome, CPF cpf) {
+    public Cliente(Long id, String nome, String cpf) {
         this.id = id;
         this.nome = nome;
         this.cpf = cpf;
     }
 
-    public Cliente(){
-
+    public Cliente() {
     }
 
     @Override
     public String toString() {
-        String numeroCpf = (cpf != null) ? cpf.valor() : "Não informado";
-        return String.format("Cliente {nome='%s', cpf='%s'}", nome, numeroCpf);
+        return String.format("Cliente {nome='%s', cpf='%s'}",
+                nome,
+                cpf != null ? cpf : "Não informado");
     }
 
     public Long getId() {
@@ -39,10 +45,10 @@ public class Cliente implements Identificavel {
     public void setNome(String nome) {
         this.nome = nome;
     }
-    public CPF getCpf() {
+    public String getCpf() {
         return cpf;
     }
-    public void setCpf(CPF cpf) {
+    public void setCpf(String cpf) {
         this.cpf = cpf;
     }
     public Lanchonete getLanchonete() {
