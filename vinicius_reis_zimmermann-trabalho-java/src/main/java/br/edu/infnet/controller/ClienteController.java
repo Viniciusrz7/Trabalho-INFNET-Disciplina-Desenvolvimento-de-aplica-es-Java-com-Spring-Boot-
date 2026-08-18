@@ -32,6 +32,7 @@ public class ClienteController {
 
         return ResponseEntity.created(location).body(cliente);
     }
+
     @GetMapping(params = "nome")
     public ResponseEntity<List<Cliente>> getByName(@RequestParam String nome) {
 

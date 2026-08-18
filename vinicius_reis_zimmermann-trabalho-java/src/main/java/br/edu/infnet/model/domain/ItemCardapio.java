@@ -3,15 +3,25 @@ package br.edu.infnet.model.domain;
 import br.edu.infnet.model.domain.util.Identificavel;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import jakarta.persistence.*;
 
 import java.math.BigDecimal;
 
+@Entity
+@Table(name = "itemcardapios")
 public abstract class ItemCardapio implements Identificavel {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @Column(nullable = false, length = 150)
     private String nome;
+    @Column(nullable = false,length = 200)
     private BigDecimal preco;
     private Boolean disponivel;
+
     @JsonBackReference
+    @Transient // não considera ele agora não para não dar erro, depois vai ter relacionamento
     private Lanchonete lanchonete;
 
     public ItemCardapio(Long id,String nome, BigDecimal preco, Boolean disponivel) {
@@ -21,7 +31,7 @@ public abstract class ItemCardapio implements Identificavel {
         this.disponivel = disponivel;
     }
 
-    public ItemCardapio(){
+    protected ItemCardapio(){
 
     }
 
