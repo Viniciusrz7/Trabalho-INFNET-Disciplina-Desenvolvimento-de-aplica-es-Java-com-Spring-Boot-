@@ -1,6 +1,7 @@
 package br.edu.infnet.service;
 
 import br.edu.infnet.model.domain.ItemCardapio;
+import br.edu.infnet.repository.ItemCardapioRepository;
 import br.edu.infnet.service.BaseGenerics.BaseService;
 import org.springframework.stereotype.Service;
 
@@ -9,6 +10,16 @@ import java.util.List;
 
 @Service
 public class ItemCardapioService extends BaseService<ItemCardapio> {
+
+    private final ItemCardapioRepository itemcardapioRepository;
+
+    public ItemCardapioService(ItemCardapioRepository itemcardapioRepository) {
+        this.itemcardapioRepository = itemcardapioRepository;
+    }
+
+    public List<ItemCardapio> obterLista(){
+        return itemcardapioRepository.findAll();
+    }
 
     public List<ItemCardapio> obterDisponiveis(){
         List<ItemCardapio> disponiveis = new ArrayList<>();

@@ -1,7 +1,9 @@
 package br.edu.infnet.model.domain;
 
-import java.math.BigDecimal;
+import jakarta.persistence.Entity;
 
+import java.math.BigDecimal;
+@Entity
 public class Lanche extends ItemCardapio{
     private String ingredientes;
     private Boolean eArtesanal;

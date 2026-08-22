@@ -1,19 +1,29 @@
 package br.edu.infnet.model.domain;
 
 import br.edu.infnet.model.domain.util.Identificavel;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Transient;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-
+@Entity
 public class Pedido implements Identificavel {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private Integer numeroPedido;
     private LocalDateTime dataHoraEmissao;
     private Boolean ativo;
+    @Transient
     private Cliente cliente;
+    @Transient
     private List<ItemCardapio> itensSelecionados = new ArrayList<ItemCardapio>();
+    @Transient
     private Lanchonete lanchonete;
 
     public Pedido(Long id, Integer numeroPedido, LocalDateTime dataHoraEmissao,Boolean ativo, Cliente cliente) {

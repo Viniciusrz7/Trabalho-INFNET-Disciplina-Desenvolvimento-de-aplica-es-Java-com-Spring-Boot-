@@ -1,5 +1,6 @@
 package br.edu.infnet.model.domain;
 
+import jakarta.persistence.*;
 import org.hibernate.validator.constraints.br.CNPJ;
 import br.edu.infnet.model.domain.util.Identificavel;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
@@ -9,8 +10,11 @@ import jakarta.validation.constraints.NotBlank;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-
+@Entity
+@Table(name = "Lanchonete")
 public class Lanchonete implements Identificavel {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String nome;
     private Boolean ativa;
@@ -18,8 +22,11 @@ public class Lanchonete implements Identificavel {
     @CNPJ(message = "CNPJ inválido")
     private String cnpj;
     @JsonManagedReference
+    @Transient
     private List<ItemCardapio> cardapio = new ArrayList<ItemCardapio>();
+    @Transient
     private List<Pedido> historicoPedidos = new ArrayList<Pedido>();
+    @Transient
     private List<Cliente> clientesCadastrados = new ArrayList<Cliente>();
 
     public Lanchonete(Long id, String nome, Boolean ativa, String cnpj) {

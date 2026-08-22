@@ -2,11 +2,18 @@ package br.edu.infnet.model.domain;
 
 import br.edu.infnet.model.domain.util.Identificavel;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Transient;
 import jakarta.validation.constraints.NotBlank;
 import org.hibernate.validator.constraints.br.CPF;
 
+@Entity
 public class Cliente implements Identificavel {
-
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String nome;
 
@@ -15,6 +22,7 @@ public class Cliente implements Identificavel {
     private String cpf;
 
     @JsonIgnore
+    @Transient
     private Lanchonete lanchonete;
 
     public Cliente(Long id, String nome, String cpf) {

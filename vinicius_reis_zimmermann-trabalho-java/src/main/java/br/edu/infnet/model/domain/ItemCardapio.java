@@ -9,6 +9,7 @@ import java.math.BigDecimal;
 
 @Entity
 @Table(name = "itemcardapios")
+@Inheritance(strategy = InheritanceType.JOINED)
 public abstract class ItemCardapio implements Identificavel {
 
     @Id
@@ -25,13 +26,17 @@ public abstract class ItemCardapio implements Identificavel {
     private Lanchonete lanchonete;
 
     public ItemCardapio(Long id,String nome, BigDecimal preco, Boolean disponivel) {
+        this(nome);
         this.id=id;
-        this.nome = nome;
         this.preco = preco;
         this.disponivel = disponivel;
     }
 
-    protected ItemCardapio(){
+    public ItemCardapio(String nome) {
+        this.nome = nome;
+    }
+
+    public ItemCardapio(){
 
     }
 

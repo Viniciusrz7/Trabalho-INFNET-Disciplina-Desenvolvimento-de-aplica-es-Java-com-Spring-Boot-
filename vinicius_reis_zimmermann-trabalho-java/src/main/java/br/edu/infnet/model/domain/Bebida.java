@@ -1,7 +1,10 @@
 package br.edu.infnet.model.domain;
 
+import jakarta.persistence.Entity;
+
 import java.math.BigDecimal;
 
+@Entity
 public class Bebida extends ItemCardapio{
     private Integer volumeMl;
     private Boolean eAlcoolica;
