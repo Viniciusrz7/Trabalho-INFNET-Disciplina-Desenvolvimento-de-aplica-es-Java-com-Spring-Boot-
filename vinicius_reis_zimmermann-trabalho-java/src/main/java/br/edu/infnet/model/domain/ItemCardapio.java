@@ -25,7 +25,11 @@ public abstract class ItemCardapio implements Identificavel {
     @Transient // não considera ele agora não para não dar erro, depois vai ter relacionamento
     private Lanchonete lanchonete;
 
-    public ItemCardapio(Long id,String nome, BigDecimal preco, Boolean disponivel) {
+    public Boolean getDisponivel() {
+        return disponivel;
+    }
+
+    public ItemCardapio(Long id, String nome, BigDecimal preco, Boolean disponivel) {
         this(nome);
         this.id=id;
         this.preco = preco;

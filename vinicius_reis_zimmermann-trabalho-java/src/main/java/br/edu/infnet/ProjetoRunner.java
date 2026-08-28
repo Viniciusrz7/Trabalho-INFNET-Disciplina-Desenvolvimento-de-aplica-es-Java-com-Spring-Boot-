@@ -70,6 +70,7 @@ public class ProjetoRunner implements CommandLineRunner {
         System.out.printf("total após o delete: %d%n", itemCardapioRepository.count());
 
         exibirItens("5 - findAll - itens restantes", itemCardapioRepository.findAll());
+        System.out.println("\n");
     }
 
     private void exibirTitulo(String titulo) {
@@ -125,9 +126,9 @@ public class ProjetoRunner implements CommandLineRunner {
 
         itemCardapioService.incluir(lanche);
         itemCardapioService.incluir(bebida);
-        clienteService.incluir(cliente);
+      /*  clienteService.incluir(cliente);
         lanchoneteService.incluir(lanchonete);
-        pedidoService.incluir(pedido);
+        pedidoService.incluir(pedido);*/
 
         for (ItemCardapio item : lanchonete.getCardapio()) {
             System.out.println("- " + item.descreverPreparo());

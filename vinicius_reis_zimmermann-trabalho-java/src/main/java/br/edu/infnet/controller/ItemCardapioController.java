@@ -61,7 +61,7 @@ public class ItemCardapioController {
 
         itemCardapio.setId(id);
 
-        itemCardapioService.alterar(itemCardapio);
+        itemCardapioService.alterar(id,itemCardapio);
 
         return ResponseEntity.ok(itemCardapio);
     }

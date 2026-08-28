@@ -1,20 +1,52 @@
 package br.edu.infnet.service;
 
+import br.edu.infnet.exception.RecursoNaoEncontradoException;
 import br.edu.infnet.model.domain.ItemCardapio;
 import br.edu.infnet.repository.ItemCardapioRepository;
-import br.edu.infnet.service.BaseGenerics.BaseService;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
 
 @Service
-public class ItemCardapioService extends BaseService<ItemCardapio> {
+public class ItemCardapioService {
 
     private final ItemCardapioRepository itemcardapioRepository;
 
     public ItemCardapioService(ItemCardapioRepository itemcardapioRepository) {
         this.itemcardapioRepository = itemcardapioRepository;
+    }
+
+    public void incluir(ItemCardapio itemCardapio){
+         itemcardapioRepository.save(itemCardapio);
+    }
+
+    public void alterar(Long id, ItemCardapio itemCardapio){
+        ItemCardapio existente = getById(id);
+        existente.setNome(itemCardapio.getNome());
+        existente.setLanchonete(itemCardapio.getLanchonete());
+        existente.setDisponivel(itemCardapio.getDisponivel());
+        existente.setPreco(itemCardapio.getPreco());
+        itemcardapioRepository.save(existente);
+    }
+
+    public void excluir(Long id){
+
+        ItemCardapio itemCardapio = getById(id);
+
+        itemcardapioRepository.delete(itemCardapio);
+
+     /*   itemcardapioRepository.deleteById(id);*/
+
+    }
+
+    public ItemCardapio getById(Long id){
+     /*   Optional<ItemCardapio> itemcardapio = itemcardapioRepository.findById(id);
+        if(itemcardapio.isPresent()){
+            return itemcardapio.get();
+        }
+        throw new RecursoNaoEncontradoException("Nenhum objeto encontrado para o identificador" + id + ".");*/
+        return itemcardapioRepository.findById(id).orElseThrow(()-> new RecursoNaoEncontradoException("Nenhum objeto encontrado para o identificador" + id + "."));
     }
 
     public List<ItemCardapio> obterLista(){
