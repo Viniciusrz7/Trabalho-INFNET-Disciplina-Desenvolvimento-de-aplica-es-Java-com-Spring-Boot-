@@ -209,7 +209,15 @@ classDiagram
 `ItemCardapio` é uma entidade **abstrata** mapeada com `@Inheritance(strategy = JOINED)`; `Lanche` e `Bebida` são as especializações concretas e implementam `descreverPreparo()`.
 
 ---
+## Integração com ViaCEP
 
+O projeto possui integração com a API externa ViaCEP para consulta de endereços a partir de um CEP.
+
+A comunicação com o serviço externo é realizada utilizando Spring Cloud OpenFeign, permitindo consumir a API ViaCEP através de uma interface Java declarativa, mantendo a integração desacoplada das demais camadas da aplicação.
+
+Essa integração permite obter informações de endereço como CEP, logradouro, complemento, bairro, município e UF diretamente do serviço ViaCEP.
+
+---
 ## Tratamento de erros
 
 `GlobalExceptionHandler` converte exceções em um corpo JSON uniforme:
@@ -273,6 +281,7 @@ src/main/java/br/edu/infnet/
 ├── controller/                     # @RestController — camada HTTP
 ├── service/                        # regras de negócio
 │   └── validation/                 # validações compartilhadas
+    └── client/                     # via cep api externa
 ├── repository/                     # interfaces Spring Data JPA
 ├── model/domain/                   # entidades JPA
 └── exception/                      # exceções e handler global
