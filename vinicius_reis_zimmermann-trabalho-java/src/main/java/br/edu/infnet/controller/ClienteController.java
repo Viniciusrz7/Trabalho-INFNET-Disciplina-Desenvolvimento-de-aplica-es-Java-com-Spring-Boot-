@@ -34,10 +34,17 @@ public class ClienteController {
     }
 
     @Operation(summary = "Busca clientes por nome", description = "Retorna os clientes que possuem o trecho informado no nome")
-    @GetMapping(params = "nome")
+    @GetMapping("/busca")
     public ResponseEntity<List<Cliente>> getByName(@Parameter(description = "Trecho do nome do cliente") @RequestParam String nome) {
         List<Cliente> clientes = clienteService.buscarPorNome(nome);
         return ResponseEntity.ok(clientes);
+    }
+
+    @Operation(summary = "Busca um cliente por ID", description = "Retorna um cliente através do seu identificador")
+    @GetMapping("/{id}")
+    public ResponseEntity<Cliente> getById(@Parameter(description = "ID do cliente") @PathVariable Long id) {
+        Cliente cliente = clienteService.getById(id);
+        return ResponseEntity.ok(cliente);
     }
 
     @Operation(summary = "Altera um cliente", description = "Altera todos os dados de um cliente")

@@ -1,6 +1,7 @@
 package br.edu.infnet.model.domain;
 
 import br.edu.infnet.model.domain.util.Identificavel;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
 
@@ -45,6 +46,7 @@ public class Pedido implements Identificavel {
     @NotNull(message = "A lanchonete é obrigatória")
     @ManyToOne
     @JoinColumn(name = "lanchonete_id")
+    @JsonBackReference("lanchonete-pedidos")
     private Lanchonete lanchonete;
 
     public Pedido(Long id, Integer numeroPedido, LocalDateTime dataHoraEmissao,Boolean ativo, Cliente cliente) {
@@ -109,7 +111,7 @@ public class Pedido implements Identificavel {
         return Collections.unmodifiableList(itensSelecionados);
     }
     public void setItensSelecionados(List<ItemCardapio> itensSelecionados) {
-        this.itensSelecionados = itensSelecionados;
+        this.itensSelecionados = new ArrayList<>(itensSelecionados);
     }
     public Boolean isAtivo() {
         return ativo;

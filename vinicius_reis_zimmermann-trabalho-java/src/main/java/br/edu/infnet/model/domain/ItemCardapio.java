@@ -2,7 +2,8 @@ package br.edu.infnet.model.domain;
 
 import br.edu.infnet.model.domain.util.Identificavel;
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonSubTypes;
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -14,6 +15,11 @@ import java.math.BigDecimal;
 @Entity
 @Table(name = "itemcardapios")
 @Inheritance(strategy = InheritanceType.JOINED)
+@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, property = "tipo")
+@JsonSubTypes({
+        @JsonSubTypes.Type(value = Lanche.class, name = "lanche"),
+        @JsonSubTypes.Type(value = Bebida.class, name = "bebida")
+})
 public abstract class ItemCardapio implements Identificavel {
 
     @Id
@@ -34,7 +40,7 @@ public abstract class ItemCardapio implements Identificavel {
     @Column(nullable = false)
     private Boolean disponivel;
 
-    @JsonBackReference
+    @JsonBackReference("lanchonete-cardapio")
     @NotNull(message = "A lanchonete é obrigatória")
     @ManyToOne
     @JoinColumn(name = "lanchonete_id", nullable = false)

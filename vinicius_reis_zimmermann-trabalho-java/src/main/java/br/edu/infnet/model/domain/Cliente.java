@@ -1,7 +1,7 @@
 package br.edu.infnet.model.domain;
 
 import br.edu.infnet.model.domain.util.Identificavel;
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -27,7 +27,7 @@ public class Cliente implements Identificavel {
     @NotNull(message = "A lanchonete é obrigatória")
     @ManyToOne
     @JoinColumn(name = "lanchonete_id")
-    @JsonIgnore
+    @JsonBackReference("lanchonete-clientes")
     private Lanchonete lanchonete;
 
     public Cliente(Long id, String nome, String cpf) {

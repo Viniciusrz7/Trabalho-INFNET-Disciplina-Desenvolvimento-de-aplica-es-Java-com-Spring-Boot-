@@ -51,6 +51,12 @@ public class ClienteService extends BaseService<Cliente> {
         return clienteRepository.findById(id).orElseThrow(()-> new RecursoNaoEncontradoException("Nenhum objeto encontrado para o identificador" + id + "."));
     }
 
+    @Override
+    public void excluir(Long id) {
+        Cliente cliente = getById(id);
+        clienteRepository.delete(cliente);
+    }
+
     public Cliente alterarParcialmente(Long id, Cliente cliente) {
         Cliente existente = getById(id);
 

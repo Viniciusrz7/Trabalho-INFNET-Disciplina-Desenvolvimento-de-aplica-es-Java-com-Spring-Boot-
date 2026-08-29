@@ -34,7 +34,7 @@ public class LanchoneteController {
     }
 
     @Operation(summary = "Busca lanchonetes por nome", description = "Retorna as lanchonetes que possuem o trecho informado no nome")
-    @GetMapping(params = "nome")
+    @GetMapping("/busca")
     public ResponseEntity<List<Lanchonete>> getByName(@Parameter(description = "Trecho do nome da lanchonete") @RequestParam String nome) {
         List<Lanchonete> lanchonetes = lanchoneteService.buscarPorNome(nome);
         return ResponseEntity.ok(lanchonetes);

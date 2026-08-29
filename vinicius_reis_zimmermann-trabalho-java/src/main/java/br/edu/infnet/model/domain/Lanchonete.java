@@ -34,13 +34,15 @@ public class Lanchonete implements Identificavel {
     @Column(nullable = false, unique = true, length = 18)
     private String cnpj;
 
-    @JsonManagedReference
+    @JsonManagedReference("lanchonete-cardapio")
     @OneToMany(mappedBy = "lanchonete")
     private List<ItemCardapio> cardapio = new ArrayList<ItemCardapio>();
 
+    @JsonManagedReference("lanchonete-pedidos")
     @OneToMany(mappedBy = "lanchonete")
     private List<Pedido> historicoPedidos = new ArrayList<Pedido>();
 
+    @JsonManagedReference("lanchonete-clientes")
     @OneToMany(mappedBy = "lanchonete")
     private List<Cliente> clientesCadastrados = new ArrayList<Cliente>();
 
