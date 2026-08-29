@@ -65,9 +65,7 @@ public class ClienteService extends BaseService<Cliente> {
         return clienteRepository.save(existente);
     }
 
-    private void aplicarAlteracoesParciais(
-            Cliente existente,
-            Cliente novosDados) {
+    private void aplicarAlteracoesParciais(Cliente existente, Cliente novosDados) {
 
         if (novosDados.getNome() != null) {
             existente.setNome(novosDados.getNome());

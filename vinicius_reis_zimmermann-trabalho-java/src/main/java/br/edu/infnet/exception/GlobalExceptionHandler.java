@@ -1,5 +1,8 @@
 package br.edu.infnet.exception;
 
+import feign.FeignException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.MethodArgumentNotValidException;
@@ -11,6 +14,8 @@ import java.util.stream.Collectors;
 
 @RestControllerAdvice
 public class GlobalExceptionHandler {
+
+    private static final Logger logger = LoggerFactory.getLogger(GlobalExceptionHandler.class);
 
     private ResponseEntity<ErroResponse> criarResposta(HttpStatus status, String mensagem){
         ErroResponse erro = new ErroResponse(status.value(),
@@ -46,6 +51,18 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(IllegalArgumentException.class)
     public ResponseEntity<ErroResponse> tratarRecursoArgumentoInvalido(IllegalArgumentException exception){
         return criarResposta(HttpStatus.BAD_REQUEST,exception.getMessage());
+    }
+
+    @ExceptionHandler(IntegracaoIndisponivelException.class)
+    public ResponseEntity<ErroResponse> tratarIntegracaoIndisponivel(IntegracaoIndisponivelException exception){
+        logger.error("Falha na integração com um serviço externo.", exception);
+        return criarResposta(HttpStatus.BAD_GATEWAY, exception.getMessage());
+    }
+
+    @ExceptionHandler(FeignException.class)
+    public ResponseEntity<ErroResponse> tratarFalhaDeComunicacao(FeignException exception){
+        logger.error("Não foi possível se comunicar com um serviço externo.", exception);
+        return criarResposta(HttpStatus.BAD_GATEWAY, "O serviço externo não está respondendo no momento.");
     }
 
 }
