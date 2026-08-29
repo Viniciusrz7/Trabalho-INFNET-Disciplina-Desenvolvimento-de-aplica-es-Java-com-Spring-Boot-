@@ -27,8 +27,7 @@ public class EnderecoService {
                 .orElseThrow(() -> new RecursoNaoEncontradoException("Nenhum endereço encontrado para o CEP " + cep + "."));
 
     }
-
     private boolean foiEncontrado(EnderecoDTO endereco) {
-        return endereco.cep() != null && !Boolean.parseBoolean(endereco.erro());
+        return endereco.cep() != null;
     }
 }
