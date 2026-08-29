@@ -8,6 +8,7 @@ import br.edu.infnet.service.ClienteService;
 import br.edu.infnet.service.ItemCardapioService;
 import br.edu.infnet.service.LanchoneteService;
 import br.edu.infnet.service.PedidoService;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
@@ -17,6 +18,8 @@ import java.util.List;
 
 @Component
 public class ProjetoRunner implements CommandLineRunner {
+    @Value("${app.runner.enabled}")
+    private boolean runnerEnabled;
     private final ItemCardapioService itemCardapioService;
     private final ClienteService clienteService;
     private final LanchoneteService lanchoneteService;
@@ -97,6 +100,10 @@ public class ProjetoRunner implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
+
+        if(!runnerEnabled){
+            return;
+        }
 
         demonstrarRepository();
 

@@ -2,10 +2,10 @@ package br.edu.infnet.service;
 
 import br.edu.infnet.exception.RecursoNaoEncontradoException;
 import br.edu.infnet.model.domain.ItemCardapio;
+import br.edu.infnet.service.validation.Validation;
 import br.edu.infnet.repository.ItemCardapioRepository;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -53,7 +53,7 @@ public class ItemCardapioService {
         return itemcardapioRepository.findAll();
     }
 
-    public List<ItemCardapio> obterDisponiveis(){
+/*    public List<ItemCardapio> obterDisponiveis(){
         List<ItemCardapio> disponiveis = new ArrayList<>();
         obterLista();
 
@@ -63,13 +63,13 @@ public class ItemCardapioService {
             }
         }
         return disponiveis;
-    }
+    }*/
 
     public List<ItemCardapio> obterListaDisponiveis(){
         return obterLista().stream().filter(ItemCardapio::isDisponivel).toList();
     }
 
-    public List<ItemCardapio> buscarPorNome(String termo){
+/*    public List<ItemCardapio> buscarPorNome(String termo){
             List<ItemCardapio> resultado = new ArrayList<>();
             for(ItemCardapio itemcardapio : obterLista()){
                 if(itemcardapio.getNome().toLowerCase().contains(termo.toLowerCase())){
@@ -81,5 +81,43 @@ public class ItemCardapioService {
 
     public List<ItemCardapio> buscarPorNomeDeclarativo(String termo){
         return obterLista().stream().filter(itemcardapio -> itemcardapio.getNome().toLowerCase().contains(termo.toLowerCase())).toList();
+    }*/
+
+    public List<ItemCardapio> buscarPorNome(String termo){
+        Validation.validarTermo(termo);
+        return itemcardapioRepository.findByNomeContainingIgnoreCase(termo);
     }
+    public List<ItemCardapio> obterDisponiveis(){
+        return  itemcardapioRepository.findByDisponivelTrue();
+    }
+
+    public ItemCardapio alterarParcialmente(Long id, ItemCardapio itemCardapio) {
+        ItemCardapio existente = getById(id);
+
+        aplicarAlteracoesParciais(existente, itemCardapio);
+
+        return itemcardapioRepository.save(existente);
+    }
+
+    private void aplicarAlteracoesParciais(ItemCardapio existente, ItemCardapio novosDados) {
+
+        if (novosDados.getNome() != null) {
+            existente.setNome(novosDados.getNome());
+        }
+
+        if (novosDados.getPreco() != null) {
+            existente.setPreco(novosDados.getPreco());
+        }
+
+        if (novosDados.getDisponivel() != null) {
+            existente.setDisponivel(novosDados.getDisponivel());
+        }
+
+        if (novosDados.getLanchonete() != null) {
+            existente.setLanchonete(novosDados.getLanchonete());
+        }
+
+
+    }
+
 }

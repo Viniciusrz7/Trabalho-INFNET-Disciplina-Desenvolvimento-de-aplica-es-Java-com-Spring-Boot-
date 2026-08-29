@@ -1,6 +1,9 @@
 package br.edu.infnet.model.domain;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 import org.hibernate.validator.constraints.br.CNPJ;
 import br.edu.infnet.model.domain.util.Identificavel;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
@@ -16,17 +19,29 @@ public class Lanchonete implements Identificavel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @NotBlank(message = "O nome deve ser informado")
+    @Size(max = 150, message = "O nome deve possuir no máximo 150 caracteres")
+    @Column(nullable = false, length = 150)
     private String nome;
+
+    @NotNull(message = "Informe se a lanchonete está ativa")
+    @Column(nullable = false)
     private Boolean ativa;
+
     @NotBlank(message = "O CNPJ é obrigatório")
     @CNPJ(message = "CNPJ inválido")
+    @Column(nullable = false, unique = true, length = 18)
     private String cnpj;
+
     @JsonManagedReference
-    @Transient
+    @OneToMany(mappedBy = "lanchonete")
     private List<ItemCardapio> cardapio = new ArrayList<ItemCardapio>();
-    @Transient
+
+    @OneToMany(mappedBy = "lanchonete")
     private List<Pedido> historicoPedidos = new ArrayList<Pedido>();
-    @Transient
+
+    @OneToMany(mappedBy = "lanchonete")
     private List<Cliente> clientesCadastrados = new ArrayList<Cliente>();
 
     public Lanchonete(Long id, String nome, Boolean ativa, String cnpj) {
@@ -95,6 +110,9 @@ public class Lanchonete implements Identificavel {
     }
     public void setAtiva(Boolean ativa) {
         this.ativa = ativa;
+    }
+    public Boolean isAtiva() {
+        return ativa;
     }
     public List<ItemCardapio> getCardapio() {
         return Collections.unmodifiableList(cardapio);

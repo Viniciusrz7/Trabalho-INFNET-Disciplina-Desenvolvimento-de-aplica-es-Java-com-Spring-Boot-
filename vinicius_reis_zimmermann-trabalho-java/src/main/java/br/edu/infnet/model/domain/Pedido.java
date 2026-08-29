@@ -1,11 +1,8 @@
 package br.edu.infnet.model.domain;
 
 import br.edu.infnet.model.domain.util.Identificavel;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Transient;
+import jakarta.persistence.*;
+import jakarta.validation.constraints.*;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -16,14 +13,38 @@ public class Pedido implements Identificavel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @NotNull(message = "O número do pedido é obrigatório")
+    @Positive(message = "O número do pedido deve ser positivo")
+    @Column(nullable = false)
     private Integer numeroPedido;
+
+    @NotNull(message = "A data e hora de emissão são obrigatórias")
+    @PastOrPresent(message = "A data de emissão não pode estar no futuro")
+    @Column(nullable = false)
     private LocalDateTime dataHoraEmissao;
+
+    @NotNull(message = "Informe se o pedido está ativo")
+    @Column(nullable = false)
     private Boolean ativo;
-    @Transient
+
+    @NotNull(message = "O cliente é obrigatório")
+    @ManyToOne
+    @JoinColumn(name = "cliente_id", nullable = false)
     private Cliente cliente;
-    @Transient
+
+    @NotEmpty(message = "O pedido deve possuir pelo menos um item")
+    @ManyToMany
+    @JoinTable(
+            name = "pedido_item",
+            joinColumns = @JoinColumn(name = "pedido_id"),
+            inverseJoinColumns = @JoinColumn(name = "item_id")
+    )
     private List<ItemCardapio> itensSelecionados = new ArrayList<ItemCardapio>();
-    @Transient
+
+    @NotNull(message = "A lanchonete é obrigatória")
+    @ManyToOne
+    @JoinColumn(name = "lanchonete_id")
     private Lanchonete lanchonete;
 
     public Pedido(Long id, Integer numeroPedido, LocalDateTime dataHoraEmissao,Boolean ativo, Cliente cliente) {
@@ -52,8 +73,8 @@ public class Pedido implements Identificavel {
             throw new IllegalArgumentException("O item não pode ser nulo!!!");
         }
         itensSelecionados.add(item);
-
     }
+
     public Long getId() {
         return id;
     }

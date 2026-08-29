@@ -2,12 +2,10 @@ package br.edu.infnet.model.domain;
 
 import br.edu.infnet.model.domain.util.Identificavel;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Transient;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 import org.hibernate.validator.constraints.br.CPF;
 
 @Entity
@@ -15,14 +13,21 @@ public class Cliente implements Identificavel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @NotBlank(message = "O nome é obrigatório")
+    @Size(max = 150, message = "O nome deve possuir no máximo 150 caracteres")
+    @Column(nullable = false, length = 150)
     private String nome;
 
     @NotBlank(message = "O CPF é obrigatório")
     @CPF(message = "CPF inválido")
+    @Column(nullable = false, unique = true, length = 14)
     private String cpf;
 
+    @NotNull(message = "A lanchonete é obrigatória")
+    @ManyToOne
+    @JoinColumn(name = "lanchonete_id")
     @JsonIgnore
-    @Transient
     private Lanchonete lanchonete;
 
     public Cliente(Long id, String nome, String cpf) {
