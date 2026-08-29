@@ -53,16 +53,9 @@ public class GlobalExceptionHandler {
         return criarResposta(HttpStatus.BAD_REQUEST,exception.getMessage());
     }
 
-    @ExceptionHandler(IntegracaoIndisponivelException.class)
-    public ResponseEntity<ErroResponse> tratarIntegracaoIndisponivel(IntegracaoIndisponivelException exception){
-        logger.error("Falha na integração com um serviço externo.", exception);
-        return criarResposta(HttpStatus.BAD_GATEWAY, exception.getMessage());
-    }
-
     @ExceptionHandler(FeignException.class)
-    public ResponseEntity<ErroResponse> tratarFalhaDeComunicacao(FeignException exception){
-        logger.error("Não foi possível se comunicar com um serviço externo.", exception);
-        return criarResposta(HttpStatus.BAD_GATEWAY, "O serviço externo não está respondendo no momento.");
+    public ResponseEntity<ErroResponse> tratarFeign(FeignException exception) {
+        return criarResposta(HttpStatus.BAD_GATEWAY,"O serviço de consulta de CEP está indisponível no momento.");
     }
 
 }

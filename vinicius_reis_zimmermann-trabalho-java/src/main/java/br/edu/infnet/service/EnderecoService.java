@@ -1,12 +1,11 @@
 package br.edu.infnet.service;
 
 import br.edu.infnet.dto.EnderecoDTO;
-import br.edu.infnet.client.ViaCepClient;
+import br.edu.infnet.service.client.ViaCepClient;
 import br.edu.infnet.exception.RecursoNaoEncontradoException;
 import br.edu.infnet.service.validation.Validation;
 import org.springframework.stereotype.Service;
 
-import java.util.Optional;
 import java.util.stream.Stream;
 
 @Service
