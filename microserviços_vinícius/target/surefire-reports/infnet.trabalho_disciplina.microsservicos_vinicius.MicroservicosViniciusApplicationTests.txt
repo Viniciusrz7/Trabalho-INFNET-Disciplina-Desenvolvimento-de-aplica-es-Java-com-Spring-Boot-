@@ -1,0 +1,4 @@
+-------------------------------------------------------------------------------
+Test set: infnet.trabalho_disciplina.microsservicos_vinicius.MicroservicosViniciusApplicationTests
+-------------------------------------------------------------------------------
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.022 s -- in infnet.trabalho_disciplina.microsservicos_vinicius.MicroservicosViniciusApplicationTests

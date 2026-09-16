@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="d13eb338-e1db-486a-82d1-e164bbd0ca73" name="Changes" comment="feat: Aula 01_02_03 de microsserviços implementa Dominio Entrega e sua arquitetura">
+      <change afterPath="$PROJECT_DIR$/Trabalho-INFNET-Disciplina-Desenvolvimento-de-aplica-es-Java-com-Spring-Boot-/vinicius_reis_zimmermann-trabalho-java/src/main/java/br/edu/infnet/dto/LanchoneteResponse.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Trabalho-INFNET-Disciplina-Desenvolvimento-de-aplica-es-Java-com-Spring-Boot-/vinicius_reis_zimmermann-trabalho-java/src/main/java/br/edu/infnet/entrega/client/EntregaClient.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Trabalho-INFNET-Disciplina-Desenvolvimento-de-aplica-es-Java-com-Spring-Boot-/vinicius_reis_zimmermann-trabalho-java/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Trabalho-INFNET-Disciplina-Desenvolvimento-de-aplica-es-Java-com-Spring-Boot-/vinicius_reis_zimmermann-trabalho-java/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Trabalho-INFNET-Disciplina-Desenvolvimento-de-aplica-es-Java-com-Spring-Boot-/vinicius_reis_zimmermann-trabalho-java/src/main/java/br/edu/infnet/controller/LanchoneteController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Trabalho-INFNET-Disciplina-Desenvolvimento-de-aplica-es-Java-com-Spring-Boot-/vinicius_reis_zimmermann-trabalho-java/src/main/java/br/edu/infnet/controller/LanchoneteController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Trabalho-INFNET-Disciplina-Desenvolvimento-de-aplica-es-Java-com-Spring-Boot-/vinicius_reis_zimmermann-trabalho-java/src/main/java/br/edu/infnet/model/domain/Lanche.java" beforeDir="false" afterPath="$PROJECT_DIR$/Trabalho-INFNET-Disciplina-Desenvolvimento-de-aplica-es-Java-com-Spring-Boot-/vinicius_reis_zimmermann-trabalho-java/src/main/java/br/edu/infnet/model/domain/Lanche.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Trabalho-INFNET-Disciplina-Desenvolvimento-de-aplica-es-Java-com-Spring-Boot-/vinicius_reis_zimmermann-trabalho-java/src/main/java/br/edu/infnet/model/domain/Lanchonete.java" beforeDir="false" afterPath="$PROJECT_DIR$/Trabalho-INFNET-Disciplina-Desenvolvimento-de-aplica-es-Java-com-Spring-Boot-/vinicius_reis_zimmermann-trabalho-java/src/main/java/br/edu/infnet/model/domain/Lanchonete.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Trabalho-INFNET-Disciplina-Desenvolvimento-de-aplica-es-Java-com-Spring-Boot-/vinicius_reis_zimmermann-trabalho-java/src/main/java/br/edu/infnet/service/LanchoneteService.java" beforeDir="false" afterPath="$PROJECT_DIR$/Trabalho-INFNET-Disciplina-Desenvolvimento-de-aplica-es-Java-com-Spring-Boot-/vinicius_reis_zimmermann-trabalho-java/src/main/java/br/edu/infnet/service/LanchoneteService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Trabalho-INFNET-Disciplina-Desenvolvimento-de-aplica-es-Java-com-Spring-Boot-/vinicius_reis_zimmermann-trabalho-java/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/Trabalho-INFNET-Disciplina-Desenvolvimento-de-aplica-es-Java-com-Spring-Boot-/vinicius_reis_zimmermann-trabalho-java/src/main/resources/application.properties" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Record" />
+        <option value="Class" />
+        <option value="Interface" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/Trabalho-INFNET-Disciplina-Desenvolvimento-de-aplica-es-Java-com-Spring-Boot-" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;Viniciusrz7&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/Viniciusrz7/Trabalho-INFNET-Disciplina-Desenvolvimento-de-aplica-es-Java-com-Spring-Boot-.git&quot;,
+    &quot;accountId&quot;: &quot;94c88f04-4430-48a9-ab3e-6e3c19fd6a9b&quot;
+  }
+}</component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 5
+}</component>
+  <component name="ProjectId" id="3IjEMASgtjevdJaJyl4xSVkmH9H" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;E:/Pós Engenharia de Software com Java/Desenvolvimento de aplicações Java com Spring Boot&quot;
+  }
+}</component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="E:\Pós Engenharia de Software com Java\Desenvolvimento de aplicações Java com Spring Boot" />
+    </key>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="d13eb338-e1db-486a-82d1-e164bbd0ca73" name="Changes" comment="" />
+      <created>1788269526162</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1788269526162</updated>
+    </task>
+    <task id="LOCAL-00001" summary="feat: Aula 01_02_03 de microsserviços implementa Dominio Entrega e sua arquitetura">
+      <option name="closed" value="true" />
+      <created>1789522291925</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1789522291925</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
+    <servers />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="feat: Aula 01_02_03 de microsserviços implementa Dominio Entrega e sua arquitetura" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat: Aula 01_02_03 de microsserviços implementa Dominio Entrega e sua arquitetura" />
+  </component>
+</project>
