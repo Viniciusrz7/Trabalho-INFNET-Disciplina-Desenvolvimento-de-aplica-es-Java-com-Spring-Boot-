@@ -10,7 +10,7 @@ import java.time.LocalDateTime;
 import java.time.LocalTime;
 
 public record EntregaRequest(
-        @NotNull(message = "A lanchonete é obrigatória")
+        @NotNull(message = "A lanchonete é obrigatória") Long lanchoneteId,
         @NotBlank(message = "O nome é obrigatório") String nomeCliente,
         @NotBlank(message = "O endereço é obrigatório") String endereco,
         @NotNull(message = "O frete é obrigatório") BigDecimal frete,
@@ -22,6 +22,7 @@ public record EntregaRequest(
 ) {
     public Entrega toEntity() {
         Entrega entrega = new Entrega(null, nomeCliente, endereco, frete, data, hora, valorEntrega);
+        entrega.setLanchoneteId(lanchoneteId);
         entrega.setAtiva(ativa);
         return entrega;
     }

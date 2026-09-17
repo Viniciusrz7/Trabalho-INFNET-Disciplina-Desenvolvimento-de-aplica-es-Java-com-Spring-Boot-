@@ -3,6 +3,7 @@ package br.edu.infnet.service;
 
 import br.edu.infnet.dto.LanchoneteResponse;
 import br.edu.infnet.entrega.client.EntregaClient;
+import br.edu.infnet.entrega.client.EntregaGateway;
 import br.edu.infnet.entrega.client.EntregaResponse;
 import br.edu.infnet.exception.RecursoNaoEncontradoException;
 import br.edu.infnet.model.domain.Lanchonete;
@@ -16,12 +17,12 @@ import java.util.List;
 public class LanchoneteService {
 
     private final LanchoneteRepository lanchoneteRepository;
-    private final EntregaClient entregaClient;
-//    private final EntregaService entregaService;
+    private final EntregaGateway entregaGateway;
+//  private final EntregaService entregaService;
 
-    public LanchoneteService(LanchoneteRepository lanchoneteRepository, EntregaClient entregaClient) {
+    public LanchoneteService(LanchoneteRepository lanchoneteRepository, EntregaGateway entregaGateway) {
         this.lanchoneteRepository = lanchoneteRepository;
-        this.entregaClient = entregaClient;
+        this.entregaGateway = entregaGateway;
     }
 
     public LanchoneteResponse obterDetalhes(Long id) {
@@ -35,7 +36,7 @@ public class LanchoneteService {
 
     public LanchoneteResponse matricularEntrega(Long lanchoneteId, Long entregaId) {
         Lanchonete lanchonete = getById(lanchoneteId);
-        EntregaResponse entrega = entregaClient.obterPorId(entregaId);
+        EntregaResponse entrega = entregaGateway.obterPorId(entregaId);
         lanchonete.getEntregaIds().contains(entrega.id());
 
         if (lanchonete.getEntregaIds().contains(entrega.id())) {

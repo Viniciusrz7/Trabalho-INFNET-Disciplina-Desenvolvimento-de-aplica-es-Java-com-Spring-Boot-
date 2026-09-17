@@ -1,7 +1,6 @@
 package infnet.trabalho_disciplina.microsservicos_vinicius.Entrega.controller;
 
 import infnet.trabalho_disciplina.microsservicos_vinicius.Entrega.service.EntregaService;
-import infnet.trabalho_disciplina.microsservicos_vinicius.Entrega.domain.Entrega;
 import infnet.trabalho_disciplina.microsservicos_vinicius.Entrega.dto.EntregaRequest;
 import infnet.trabalho_disciplina.microsservicos_vinicius.Entrega.dto.EntregaResponse;
 import jakarta.validation.Valid;
@@ -24,31 +23,30 @@ public class EntregaController {
 
     @PostMapping
     public ResponseEntity<EntregaResponse> incluir(@Valid @RequestBody EntregaRequest entrega){
-        Entrega incluido = entregaService.incluir(entrega.toEntity());
+        EntregaResponse incluido = entregaService.incluir(entrega.toEntity());
 
-        return ResponseEntity.status(HttpStatus.CREATED).body(EntregaResponse.from(incluido));
+        return ResponseEntity.status(HttpStatus.CREATED).body(incluido);
     }
 
     @GetMapping
     public List<EntregaResponse> obterLista(){
-        return entregaService.obterLista().stream().map(EntregaResponse::from).toList();
+        return entregaService.obterLista();
     }
 
    /*
     @GetMapping("/lanchonete/{lanchoneteId}")
     public List<EntregaResponse> obterPorLanchonete(@PathVariable Long lanchoneteId) {
-        return entregaService.obterPorLanchonete(lanchoneteId)
-                .stream().map(EntregaResponse::from).toList();
+        return entregaService.obterPorLanchonete(lanchoneteId);
     }*/
 
     @GetMapping("/{id}")
-    public ResponseEntity<Entrega> obterPorId(@PathVariable Long id){
+    public ResponseEntity<EntregaResponse> obterPorId(@PathVariable Long id){
         return ResponseEntity.ok(entregaService.obterPorId(id));
     }
 
     @PutMapping("/{id}")
     public EntregaResponse alterar(@PathVariable Long id, @Valid @RequestBody EntregaRequest entrega){
-        return EntregaResponse.from(entregaService.alterar(id, entrega.toEntity()));
+        return entregaService.alterar(id, entrega.toEntity());
     }
 
     @DeleteMapping("/{id}")
@@ -59,16 +57,16 @@ public class EntregaController {
 
     @GetMapping("/ativas")
     public List<EntregaResponse> obterAtivas(){
-        return entregaService.obterAtivos().stream().map(EntregaResponse::from).toList();
+        return entregaService.obterAtivos();
     }
 
     @GetMapping("/buscarNome")
     public List<EntregaResponse> obterPorNome(@RequestParam String nome){
-        return entregaService.obterPorNome(nome).stream().map(EntregaResponse::from).toList();
+        return entregaService.obterPorNome(nome);
     }
 
     @GetMapping("/buscarEndereco")
     public Optional<EntregaResponse> obterPorEndereco(@RequestParam String endereco){
-        return entregaService.obterPorEndereco(endereco).map(EntregaResponse::from);
+        return entregaService.obterPorEndereco(endereco);
     }
 }

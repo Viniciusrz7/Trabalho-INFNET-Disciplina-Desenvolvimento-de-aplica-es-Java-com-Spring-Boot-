@@ -1,6 +1,5 @@
 package infnet.trabalho_disciplina.microsservicos_vinicius.Entrega.domain;
 
-import br.edu.infnet.model.domain.Lanchonete;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
 
@@ -16,9 +15,8 @@ public class Entrega {
     private Long id;
 
     @NotNull(message = "A lanchonete é obrigatória")
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "lanchonete_id", nullable = false)
-    private Lanchonete lanchonete;
+    @Column(name = "lanchonete_id", nullable = false)
+    private Long lanchoneteId;
 
 
     @NotBlank(message = "O nome é obrigatorio")
@@ -72,6 +70,13 @@ public class Entrega {
         this.id = id;
     }
 
+    public Long getLanchoneteId() {
+        return lanchoneteId;
+    }
+
+    public void setLanchoneteId(Long lanchoneteId) {
+        this.lanchoneteId = lanchoneteId;
+    }
 
     public String getNomeCliente() {
         return nomeCliente;

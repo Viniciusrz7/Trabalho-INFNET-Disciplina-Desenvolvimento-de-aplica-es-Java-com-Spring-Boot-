@@ -1,5 +1,7 @@
 package br.edu.infnet.exception;
 
+import br.edu.infnet.entrega.client.exception.EntregaRemotoNaoEncontradoException;
+import br.edu.infnet.entrega.client.exception.EntregaServiceIndisponivelException;
 import feign.FeignException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -17,7 +19,7 @@ public class GlobalExceptionHandler {
 
     private static final Logger logger = LoggerFactory.getLogger(GlobalExceptionHandler.class);
 
-    private ResponseEntity<ErroResponse> criarResposta(HttpStatus status, String mensagem){
+    private ResponseEntity<ErroResponse> criarResposta(HttpStatus status, String mensagem) {
         ErroResponse erro = new ErroResponse(status.value(),
                 status.getReasonPhrase(),
                 mensagem,
@@ -26,7 +28,7 @@ public class GlobalExceptionHandler {
     }
 
     @ExceptionHandler(MethodArgumentNotValidException.class)
-    public ResponseEntity<ErroResponse> tratarErroValidacao(MethodArgumentNotValidException exception){
+    public ResponseEntity<ErroResponse> tratarErroValidacao(MethodArgumentNotValidException exception) {
 
         String mensagem = exception
                 .getBindingResult()
@@ -35,27 +37,36 @@ public class GlobalExceptionHandler {
                 .map(erro -> erro.getField() + ": " + erro.getDefaultMessage())
                 .collect(Collectors.joining("; "));
 
-        return criarResposta(HttpStatus.BAD_REQUEST,mensagem);
+        return criarResposta(HttpStatus.BAD_REQUEST, mensagem);
     }
 
     @ExceptionHandler(RecursoNaoEncontradoException.class)
-    public ResponseEntity<ErroResponse> tratarRecursoNaoEncontrado(RecursoNaoEncontradoException exception){
-       return criarResposta(HttpStatus.NOT_FOUND,exception.getMessage());
+    public ResponseEntity<ErroResponse> tratarRecursoNaoEncontrado(RecursoNaoEncontradoException exception) {
+        return criarResposta(HttpStatus.NOT_FOUND, exception.getMessage());
     }
 
     @ExceptionHandler(IdentificadorDuplicadoException.class)
-    public ResponseEntity<ErroResponse> tratarIdentificadorDuplicadoException(IdentificadorDuplicadoException exception){
-        return criarResposta(HttpStatus.CONFLICT,exception.getMessage());
+    public ResponseEntity<ErroResponse> tratarIdentificadorDuplicadoException(IdentificadorDuplicadoException exception) {
+        return criarResposta(HttpStatus.CONFLICT, exception.getMessage());
     }
 
     @ExceptionHandler(IllegalArgumentException.class)
-    public ResponseEntity<ErroResponse> tratarRecursoArgumentoInvalido(IllegalArgumentException exception){
-        return criarResposta(HttpStatus.BAD_REQUEST,exception.getMessage());
+    public ResponseEntity<ErroResponse> tratarRecursoArgumentoInvalido(IllegalArgumentException exception) {
+        return criarResposta(HttpStatus.BAD_REQUEST, exception.getMessage());
     }
 
     @ExceptionHandler(FeignException.class)
     public ResponseEntity<ErroResponse> tratarFeign(FeignException exception) {
-        return criarResposta(HttpStatus.BAD_GATEWAY,"O serviço de consulta de CEP está indisponível no momento.");
+        return criarResposta(HttpStatus.BAD_GATEWAY, exception.getMessage());
     }
 
+    @ExceptionHandler(EntregaRemotoNaoEncontradoException.class)
+    public ResponseEntity<ErroResponse> tratarEntregaRemotoNaoEncontrado(EntregaRemotoNaoEncontradoException exception) {
+        return criarResposta(HttpStatus.NOT_FOUND, exception.getMessage());
+    }
+
+    @ExceptionHandler(EntregaServiceIndisponivelException.class)
+    public ResponseEntity<ErroResponse> tratarEntregaServiceIndisponivel(EntregaServiceIndisponivelException exception) {
+        return criarResposta(HttpStatus.SERVICE_UNAVAILABLE, exception.getMessage());
+    }
 }

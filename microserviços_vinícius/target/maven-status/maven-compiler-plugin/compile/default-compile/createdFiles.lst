@@ -1,2 +1,7 @@
-infnet\trabalho_disciplina\microsservicos_vinicius\Entrega\dto\EntregaRequest.class
+infnet\trabalho_disciplina\microsservicos_vinicius\Entrega\repository\EntregaRepository.class
 infnet\trabalho_disciplina\microsservicos_vinicius\Entrega\dto\EntregaResponse.class
+infnet\trabalho_disciplina\microsservicos_vinicius\Entrega\controller\EntregaController.class
+infnet\trabalho_disciplina\microsservicos_vinicius\Entrega\domain\Entrega.class
+infnet\trabalho_disciplina\microsservicos_vinicius\Entrega\service\EntregaService.class
+infnet\trabalho_disciplina\microsservicos_vinicius\Entrega\dto\EntregaRequest.class
+infnet\trabalho_disciplina\microsservicos_vinicius\exception\EntregaNaoEncontradoException.class

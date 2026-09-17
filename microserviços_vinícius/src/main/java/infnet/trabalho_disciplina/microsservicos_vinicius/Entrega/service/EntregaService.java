@@ -1,5 +1,6 @@
 package infnet.trabalho_disciplina.microsservicos_vinicius.Entrega.service;
 
+import infnet.trabalho_disciplina.microsservicos_vinicius.Entrega.dto.EntregaResponse;
 import infnet.trabalho_disciplina.microsservicos_vinicius.exception.EntregaNaoEncontradoException;
 import infnet.trabalho_disciplina.microsservicos_vinicius.Entrega.repository.EntregaRepository;
 import infnet.trabalho_disciplina.microsservicos_vinicius.Entrega.domain.Entrega;
@@ -17,24 +18,50 @@ public class EntregaService {
         this.entregaRepository=entregaRepository;
     }
 
-    public Entrega incluir(Entrega entrega){
-        return entregaRepository.save(entrega);
+    public EntregaResponse incluir(Entrega entrega){
+        return converterParaResponse(entregaRepository.save(entrega));
     }
 
-    public List<Entrega> obterLista(){
-        return entregaRepository.findAll();
+    public List<EntregaResponse> obterLista(){
+        return converterParaResponse(entregaRepository.findAll());
     }
 
-   /* public List<Entrega> obterPorLanchonete(Long lanchoneteId) {
-        return entregaRepository.findByLanchoneteId(lanchoneteId);
+   /* public List<EntregaResponse> obterPorLanchonete(Long lanchoneteId) {
+        return converterParaResponse(entregaRepository.findByLanchoneteId(lanchoneteId));
     }*/
 
-    public Entrega obterPorId(Long id){
+    public EntregaResponse obterPorId(Long id){
+//        try {
+//            Thread.sleep(5000);
+//        } catch (InterruptedException e) {
+//            e.printStackTrace();
+//        }
+        Entrega entrega = obterEntidadePorId(id);
+        return converterParaResponse(entrega);
+    }
+
+    private Entrega obterEntidadePorId(Long id){
         return entregaRepository.findById(id).orElseThrow(()-> new EntregaNaoEncontradoException(id));
     }
 
-    public Entrega alterar(Long id, Entrega entrega){
-        Entrega existente = obterPorId(id);
+    private EntregaResponse converterParaResponse(Entrega entrega) {
+        return new EntregaResponse(
+                entrega.getId(),
+                entrega.getNomeCliente(),
+                entrega.getEndereco(),
+                entrega.getFrete(),
+                entrega.getData(),
+                entrega.getHora(),
+                entrega.getValorEntrega(),
+                entrega.isAtiva());
+    }
+
+    private List<EntregaResponse> converterParaResponse(List<Entrega> entregas) {
+        return entregas.stream().map(this::converterParaResponse).toList();
+    }
+
+    public EntregaResponse alterar(Long id, Entrega entrega){
+        Entrega existente = obterEntidadePorId(id);
 
         existente.setNomeCliente(entrega.getNomeCliente());
         existente.setData(entrega.getData());
@@ -45,25 +72,25 @@ public class EntregaService {
         existente.setValorEntrega(entrega.getValorEntrega());
 
 
-        return entregaRepository.save(existente);
+        return converterParaResponse(entregaRepository.save(existente));
     }
 
     public void excluir(Long id){
-        Entrega existente = obterPorId(id);
+        Entrega existente = obterEntidadePorId(id);
 
         entregaRepository.delete(existente);
     }
 
-    public List<Entrega> obterAtivos(){
-        return entregaRepository.findByAtivaTrue();
+    public List<EntregaResponse> obterAtivos(){
+        return converterParaResponse(entregaRepository.findByAtivaTrue());
     }
 
-    public List<Entrega> obterPorNome(String nome){
-        return entregaRepository.findByNomeClienteContainingIgnoreCase(nome);
+    public List<EntregaResponse> obterPorNome(String nome){
+        return converterParaResponse(entregaRepository.findByNomeClienteContainingIgnoreCase(nome));
     }
 
-    public Optional<Entrega> obterPorEndereco(String endereco){
-        return entregaRepository.findByEndereco(endereco);
+    public Optional<EntregaResponse> obterPorEndereco(String endereco){
+        return entregaRepository.findByEndereco(endereco).map(this::converterParaResponse);
     }
 
 }
