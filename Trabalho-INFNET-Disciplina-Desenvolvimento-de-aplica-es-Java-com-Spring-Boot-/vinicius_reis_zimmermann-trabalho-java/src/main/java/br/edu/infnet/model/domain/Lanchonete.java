@@ -1,6 +1,5 @@
 package br.edu.infnet.model.domain;
 
-import infnet.trabalho_disciplina.microsservicos_vinicius.Entrega.domain.Entrega;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
