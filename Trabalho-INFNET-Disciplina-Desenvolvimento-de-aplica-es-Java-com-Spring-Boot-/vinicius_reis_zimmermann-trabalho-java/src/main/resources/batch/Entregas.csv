@@ -1,0 +1,31 @@
+id;nomeCliente;endereco;frete;data;hora;valorEntrega;ativa
+1;Ana Silva;Rua das Flores nº 769 - Juiz de Fora/MG;10.63;2026-10-21T11:54:00;11:54:00;65.12;true
+2;Bruno Costa;Rua Aurora nº 768 - Juiz de Fora/MG;16.16;2026-10-05T11:44:00;11:44:00;39.24;false
+3;Carla Souza;Rua das Flores nº 105 - Juiz de Fora/MG;9.47;2026-10-14T10:32:00;10:32:00;63.11;false
+4;Diego Oliveira;Rua das Palmeiras nº 213 - Juiz de Fora/MG;19.66;2026-10-20T10:27:00;10:27:00;131.47;false
+5;Elisa Santos;Rua das Acácias nº 469 - Juiz de Fora/MG;17.06;2026-10-18T17:09:00;17:09:00;70.57;true
+6;Felipe Lima;Rua Aurora nº 442 - Juiz de Fora/MG;11.96;2026-10-25T12:43:00;12:43:00;70.52;true
+7;Gabriela Alves;Rua das Flores nº 104 - Juiz de Fora/MG;12.78;2026-10-07T15:44:00;15:44:00;40.84;true
+8;Henrique Rocha;Rua das Palmeiras nº 280 - Juiz de Fora/MG;5.88;2026-10-28T15:52:00;15:52:00;144.55;true
+9;Isabela Martins;Rua dos Ipês nº 90 - Juiz de Fora/MG;16.30;2026-10-18T12:07:00;12:07:00;73.03;false
+10;João Pereira;Rua das Palmeiras nº 206 - Juiz de Fora/MG;19.42;2026-10-20T16:10:00;16:10:00;36.39;true
+11;Karen Ribeiro;Avenida Central nº 91 - Juiz de Fora/MG;9.76;2026-10-22T13:53:00;13:53:00;166.96;true
+12;Lucas Ferreira;Rua dos Ipês nº 660 - Juiz de Fora/MG;12.47;2026-10-13T14:44:00;14:44:00;51.64;true
+13;Mariana Castro;Rua Aurora nº 283 - Juiz de Fora/MG;19.37;2026-10-12T13:34:00;13:34:00;178.46;false
+14;Nicolas Barros;Rua das Palmeiras nº 660 - Juiz de Fora/MG;8.50;2026-10-21T11:13:00;11:13:00;112.51;false
+15;Olívia Mendes;Rua dos Ipês nº 398 - Juiz de Fora/MG;10.52;2026-10-08T12:47:00;12:47:00;176.61;false
+16;Pedro Carvalho;Rua das Acácias nº 711 - Juiz de Fora/MG;11.64;2026-10-23T19:30:00;19:30:00;163.09;true
+17;Quitéria Lopes;Avenida Central nº 420 - Juiz de Fora/MG;10.48;2026-10-08T10:32:00;10:32:00;35.84;true
+18;Rafael Gomes;Rua Aurora nº 332 - Juiz de Fora/MG;9.35;2026-10-30T19:40:00;19:40:00;132.38;true
+19;Sofia Duarte;Rua dos Ipês nº 156 - Juiz de Fora/MG;10.42;2026-10-13T20:58:00;20:58:00;47.87;true
+20;Thiago Teixeira;Rua das Palmeiras nº 279 - Juiz de Fora/MG;16.97;2026-10-24T19:34:00;19:34:00;95.19;false
+21;Ursula Dias;Rua das Acácias nº 151 - Juiz de Fora/MG;15.43;2026-10-13T16:10:00;16:10:00;105.85;true
+22;Vinícius Reis;Rua das Flores nº 166 - Juiz de Fora/MG;17.85;2026-10-25T10:48:00;10:48:00;51.21;false
+23;Wagner Azevedo;Rua das Flores nº 404 - Juiz de Fora/MG;12.81;2026-10-14T20:10:00;20:10:00;122.63;true
+24;Yasmin Nunes;Rua das Palmeiras nº 891 - Juiz de Fora/MG;5.23;2026-10-17T14:17:00;14:17:00;136.45;false
+25;Zélia Moreira;Rua das Palmeiras nº 778 - Juiz de Fora/MG;10.46;2026-10-04T21:38:00;21:38:00;150.92;false
+26;André Vieira;Avenida Central nº 455 - Juiz de Fora/MG;8.23;2026-10-11T11:54:00;11:54:00;99.33;true
+27;Beatriz Campos;Rua das Palmeiras nº 790 - Juiz de Fora/MG;8.65;2026-10-24T14:29:00;14:29:00;108.17;true
+28;Caio Freitas;Avenida Central nº 871 - Juiz de Fora/MG;18.08;2026-10-28T20:40:00;20:40:00;108.17;false
+29;Daniela Cardoso;Avenida Central nº 790 - Juiz de Fora/MG;8.30;2026-10-07T12:36:00;12:36:00;113.37;false
+30;Eduardo Pinto;Rua das Palmeiras nº 341 - Juiz de Fora/MG;15.00;2026-10-30T10:00:00;10:00:00;28.19;true
