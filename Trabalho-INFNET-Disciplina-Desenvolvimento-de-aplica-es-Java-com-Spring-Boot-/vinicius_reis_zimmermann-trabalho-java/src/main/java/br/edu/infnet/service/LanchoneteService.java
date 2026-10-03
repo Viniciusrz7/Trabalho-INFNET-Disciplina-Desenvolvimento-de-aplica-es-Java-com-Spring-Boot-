@@ -2,27 +2,30 @@ package br.edu.infnet.service;
 
 
 import br.edu.infnet.dto.LanchoneteResponse;
-import br.edu.infnet.entrega.client.EntregaClient;
 import br.edu.infnet.entrega.client.EntregaGateway;
 import br.edu.infnet.entrega.client.EntregaResponse;
 import br.edu.infnet.exception.RecursoNaoEncontradoException;
 import br.edu.infnet.model.domain.Lanchonete;
 import br.edu.infnet.repository.LanchoneteRepository;
+import br.edu.infnet.arquitetura.messaging.LanchoneteProducer;
 import br.edu.infnet.service.validation.Validation;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
-
+import br.edu.infnet.arquitetura.messaging.LanchoneteMassage;
 @Service
 public class LanchoneteService {
 
     private final LanchoneteRepository lanchoneteRepository;
     private final EntregaGateway entregaGateway;
+    private final LanchoneteProducer lanchoneteProducer;
 //  private final EntregaService entregaService;
 
-    public LanchoneteService(LanchoneteRepository lanchoneteRepository, EntregaGateway entregaGateway) {
+    public LanchoneteService(LanchoneteRepository lanchoneteRepository,
+                             EntregaGateway entregaGateway,
+                             LanchoneteProducer lanchoneteProducer) {
         this.lanchoneteRepository = lanchoneteRepository;
         this.entregaGateway = entregaGateway;
+        this.lanchoneteProducer = lanchoneteProducer;
     }
 
     public LanchoneteResponse obterDetalhes(Long id) {
@@ -46,6 +49,8 @@ public class LanchoneteService {
         lanchonete.adicionarEntrega(entrega.id());
 
         Lanchonete lanchoneteAtualizada = lanchoneteRepository.save(lanchonete);
+        LanchoneteMassage mensagemObj = new LanchoneteMassage(lanchoneteAtualizada.getId(), entrega.id());
+        lanchoneteProducer.enviar(mensagemObj);
         return converterParaResponse(lanchoneteAtualizada);
     }
 
