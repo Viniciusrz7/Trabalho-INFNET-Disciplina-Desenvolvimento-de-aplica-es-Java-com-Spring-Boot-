@@ -1,7 +1,7 @@
 package infnet.trabalho_disciplina.microsservicos_vinicius.Entrega.controller;
 
+import infnet.trabalho_disciplina.microsservicos_vinicius.Entrega.domain.Entrega;
 import infnet.trabalho_disciplina.microsservicos_vinicius.Entrega.service.EntregaService;
-import infnet.trabalho_disciplina.microsservicos_vinicius.Entrega.dto.EntregaRequest;
 import infnet.trabalho_disciplina.microsservicos_vinicius.Entrega.dto.EntregaResponse;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
@@ -22,8 +22,8 @@ public class EntregaController {
     }
 
     @PostMapping
-    public ResponseEntity<EntregaResponse> incluir(@Valid @RequestBody EntregaRequest entrega){
-        EntregaResponse incluido = entregaService.incluir(entrega.toEntity());
+    public ResponseEntity<EntregaResponse> incluir(@Valid @RequestBody Entrega entrega){
+        EntregaResponse incluido = entregaService.incluir(entrega);
 
         return ResponseEntity.status(HttpStatus.CREATED).body(incluido);
     }
@@ -45,8 +45,8 @@ public class EntregaController {
     }
 
     @PutMapping("/{id}")
-    public EntregaResponse alterar(@PathVariable Long id, @Valid @RequestBody EntregaRequest entrega){
-        return entregaService.alterar(id, entrega.toEntity());
+    public EntregaResponse alterar(@PathVariable Long id, @Valid @RequestBody Entrega entrega){
+        return entregaService.alterar(id, entrega);
     }
 
     @DeleteMapping("/{id}")

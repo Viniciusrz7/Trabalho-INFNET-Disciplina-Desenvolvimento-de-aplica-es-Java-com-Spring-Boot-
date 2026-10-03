@@ -7,10 +7,7 @@
     <list default="true" id="d13eb338-e1db-486a-82d1-e164bbd0ca73" name="Changes" comment="feat: Aula 01_02_03 de microsserviços implementa Dominio Entrega e sua arquitetura">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/microserviços_vinícius/src/main/java/infnet/trabalho_disciplina/microsservicos_vinicius/Entrega/controller/EntregaController.java" beforeDir="false" afterPath="$PROJECT_DIR$/microserviços_vinícius/src/main/java/infnet/trabalho_disciplina/microsservicos_vinicius/Entrega/controller/EntregaController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/microserviços_vinícius/src/main/java/infnet/trabalho_disciplina/microsservicos_vinicius/Entrega/domain/Entrega.java" beforeDir="false" afterPath="$PROJECT_DIR$/microserviços_vinícius/src/main/java/infnet/trabalho_disciplina/microsservicos_vinicius/Entrega/domain/Entrega.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/microserviços_vinícius/src/main/java/infnet/trabalho_disciplina/microsservicos_vinicius/Entrega/dto/EntregaRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/microserviços_vinícius/src/main/java/infnet/trabalho_disciplina/microsservicos_vinicius/Entrega/dto/EntregaRequest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/microserviços_vinícius/src/main/java/infnet/trabalho_disciplina/microsservicos_vinicius/Entrega/dto/EntregaResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/microserviços_vinícius/src/main/java/infnet/trabalho_disciplina/microsservicos_vinicius/Entrega/dto/EntregaResponse.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/microserviços_vinícius/src/main/java/infnet/trabalho_disciplina/microsservicos_vinicius/Entrega/service/EntregaService.java" beforeDir="false" afterPath="$PROJECT_DIR$/microserviços_vinícius/src/main/java/infnet/trabalho_disciplina/microsservicos_vinicius/Entrega/service/EntregaService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/microserviços_vinícius/src/main/java/infnet/trabalho_disciplina/microsservicos_vinicius/Entrega/dto/EntregaRequest.java" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -49,19 +46,22 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;E:/Pós Engenharia de Software com Java/Desenvolvimento de aplicações Java com Spring Boot&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "git-widget-placeholder": "main",
+    "ignore.virus.scanning.warn.message": "true",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "E:/Pós Engenharia de Software com Java/Desenvolvimento de aplicações Java com Spring Boot"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="E:\Pós Engenharia de Software com Java\Desenvolvimento de aplicações Java com Spring Boot" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="E:\Pós Engenharia de Software com Java\Desenvolvimento de aplicações Java com Spring Boot\Trabalho-INFNET-Disciplina-Desenvolvimento-de-aplica-es-Java-com-Spring-Boot-\vinicius_reis_zimmermann-trabalho-java\src\main\java\br\edu\infnet" />
     </key>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
