@@ -217,6 +217,52 @@ A comunicação com o serviço externo é realizada utilizando Spring Cloud Open
 
 Essa integração permite obter informações de endereço como CEP, logradouro, complemento, bairro, município e UF diretamente do serviço ViaCEP.
 
+## Progresso do microsserviço de entregas
+
+O repositório também contém o módulo independente [`microserviços_vinícius`](../../microserviços_vinícius), que expõe a API de entregas na porta `8081`. O módulo usa Spring Boot, Spring Data JPA e Bean Validation.
+
+### Implementado
+
+- Entidade `Entrega` persistida com JPA e resposta exposta pelo DTO `EntregaResponse`.
+- Cadastro, listagem, consulta por ID, atualização e exclusão de entregas.
+- Consultas para entregas ativas, busca parcial por nome do cliente e busca por endereço.
+- Validações de campos obrigatórios e data atual ou futura.
+- Tratamento centralizado de validação (`400 Bad Request`) e entrega inexistente (`404 Not Found`).
+- Perfil de desenvolvimento com H2 em memória; perfil de produção configurado para receber `DB_URL`, `DB_USERNAME` e `DB_PASSWORD`.
+
+### Endpoints do serviço
+
+| Método | Rota | Descrição |
+|---|---|---|
+| `POST` | `/entregas` | Cadastra uma entrega (`201 Created`) |
+| `GET` | `/entregas` | Lista entregas |
+| `GET` | `/entregas/{id}` | Consulta uma entrega |
+| `PUT` | `/entregas/{id}` | Atualiza uma entrega |
+| `DELETE` | `/entregas/{id}` | Exclui uma entrega (`204 No Content`) |
+| `GET` | `/entregas/ativas` | Lista entregas ativas |
+| `GET` | `/entregas/buscarNome?nome=` | Busca pelo nome do cliente |
+| `GET` | `/entregas/buscarEndereco?endereco=` | Busca pelo endereço |
+
+A consulta por `lanchoneteId` está esboçada no código, mas ainda não está exposta como endpoint ativo.
+
+### Executar o microsserviço
+
+No Windows:
+
+```powershell
+cd ..\..\microserviços_vinícius
+.\mvnw.cmd spring-boot:run
+```
+
+No Linux ou macOS:
+
+```bash
+cd ../../microserviços_vinícius
+./mvnw spring-boot:run
+```
+
+A API fica disponível em `http://localhost:8081`; o Swagger UI é servido em `/swagger-ui.html`.
+
 ---
 ## Tratamento de erros
 
